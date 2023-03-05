@@ -20,7 +20,7 @@ def topologyAnalysis(nodes, edges, matrix):
             startPoint_x = edge[0][0] - center_x
             startPoint_y = edge[0][1] - center_y
             #print(i, center_x, center_y, edge[0][0], edge[0][1], start_x, start_y, start_x*start_x + start_y*start_y, nodes[i][1])
-            if startPoint_x**2 + startPoint_y**2 <= (nodes[i][1]+30)**2:
+            if startPoint_x**2 + startPoint_y**2 <= (nodes[i][1]+35)**2:
                 startPoint = i
                 break
         
@@ -29,7 +29,7 @@ def topologyAnalysis(nodes, edges, matrix):
             center_y = nodes[i][0][1]
             endPoint_x = edge[1][0] - center_x
             endPoint_y = edge[1][1] - center_y
-            if endPoint_x**2 + endPoint_y**2 <= (nodes[i][1]+30)**2:
+            if endPoint_x**2 + endPoint_y**2 <= (nodes[i][1]+35)**2:
                 endPoint = i
                 break
 
@@ -68,10 +68,13 @@ def segmentationNodes(img):
 
 def segmentationEdges(nodes, img):
     segmentatedEdge = img
+    segmentatedEdgeColour = cv.cvtColor(segmentatedEdge, cv.COLOR_BGR2RGB)
+    
     for node in nodes:
-        cv.circle(segmentatedEdge, node[0], node[1]+10, (0,0,0), -1)
+        cv.circle(segmentatedEdge, node[0], node[1]+5, (0,0,0), -1)
     cv.imwrite("debugPics/3segmentatedEdge.png", segmentatedEdge)
 
+    #segmentatedEdge = cv.Canny(segmentatedEdge, 50, 150, apertureSize=3)
     lines = cv.HoughLinesP(
             segmentatedEdge, # Input edge image
             2, # Distance resolution in pixels
@@ -81,7 +84,7 @@ def segmentationEdges(nodes, img):
             maxLineGap=50 # Max allowed gap between line for joining them
             )
     edges = []
-    segmentatedEdgeColour = cv.cvtColor(segmentatedEdge, cv.COLOR_BGR2RGB)
+    
     for points in lines:
         x1,y1,x2,y2=points[0]
         edges.append([(x1,y1), (x2,y2)])

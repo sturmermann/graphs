@@ -19,7 +19,7 @@ def main():
     matrix = sgn.segmentationMain(image)
     print(matrix)
     psp.postprocessingMain(matrix)
-    return 0
+    return 1
 
 
 if __name__ == "__main__":
