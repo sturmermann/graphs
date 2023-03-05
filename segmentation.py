@@ -77,7 +77,7 @@ def segmentationEdges(nodes, img):
             2, # Distance resolution in pixels
             np.pi/360, # Angle resolution in radians
             threshold=100, # Min number of votes for valid line
-            minLineLength=25, # Min allowed length of line
+            minLineLength=30, # Min allowed length of line
             maxLineGap=50 # Max allowed gap between line for joining them
             )
     edges = []
