@@ -27,7 +27,7 @@ def alternativeGaussianPreprocessing(img):
 def alternativeOtsuPreprocessing(img):
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     img = cv.resize(img, (1020, 980))
-    img = cv.GaussianBlur(img,(5,5),0)
+    #img = cv.GaussianBlur(img,(5,5),0)
     hist,img = cv.threshold(img,0,255,cv.THRESH_BINARY_INV+cv.THRESH_OTSU)
     cv.imwrite("debugPics/0imgAfterPreprocessing.png", img)
     return img
