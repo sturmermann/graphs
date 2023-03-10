@@ -7,6 +7,10 @@ import segmentation as sgn
 import postprocessing as psp
 import consoleStuff
 
+
+def debug():
+    prp.binarizationTests(["TestCases/1.png", "TestCases/2.png", "TestCases/3.png", "TestCases/4.png", "TestCases/5.png"])
+
 def main():
     parser = consoleStuff.argsMain()
     args = parser.parse_args()
@@ -24,9 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-# def debug():
-#     prp.binarizationTests(["TestCases/1.png", "TestCases/2.png", "TestCases/3.png", "TestCases/4.png", "TestCases/5.png"])
